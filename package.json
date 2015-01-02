@@ -1,0 +1,22 @@
+{
+  "name": "fluidnode",
+  "version": "0.1.0",
+  "description": "Node.js bindings for the FluidSynth software synthesizer",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adius/fluidnode.git"
+  },
+  "keywords": [
+    "fluidsynth"
+  ],
+  "author": "Adrian Sieber <mail@adriansieber.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adius/fluidnode/issues"
+  },
+  "homepage": "https://github.com/adius/fluidnode",
+  "dependencies": {
+    "generaluser": "^1.45.0"
+  }
+}
