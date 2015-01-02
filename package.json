@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/adius/fluidnode",
   "dependencies": {
-    "generaluser": "^1.45.0"
+    "generaluser": "^1.45.0",
+    "temp": "^0.8.1"
   }
 }
