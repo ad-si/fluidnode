@@ -4,6 +4,20 @@ var path = require('path'),
 	childProcess = require('child_process')
 
 
+function applyDefaults (options, defaults) {
+
+	var key
+
+	options = options || {}
+
+	for (key in defaults)
+		if (defaults.hasOwnProperty(key) &&
+		    typeof options[key] === 'undefined')
+			options[key] = defaults[key]
+
+	return options
+}
+
 // TODO: Return promise when no callback is given
 
 module.exports.render = function (midiBuffer, options, callback) {
@@ -27,12 +41,7 @@ module.exports.renderFile = function (filePath, options, callback) {
 		key
 
 
-	// Set defaults
-	options = options || {}
-
-	for (key in defaults)
-		if (defaults.hasOwnProperty(key))
-			options[key] = options[key] || defaults[key]
+	options = applyDefaults(options, defaults)
 
 	tempFile = temp.path()
 
