@@ -1,87 +1,55 @@
-var path = require('path'),
-	fs = require('fs'),
-	temp = require('temp'),
-	childProcess = require('child_process')
+import path from "node:path"
+import * as fs from "node:fs/promises"
 
+import { promisify } from "node:util"
 
-function applyDefaults (options, defaults) {
+import temp from "temp"
+import { execFile } from "child_process"
 
-	var key
+const execFileAsync = promisify(execFile)
 
-	options = options || {}
-
-	for (key in defaults)
-		if (defaults.hasOwnProperty(key) &&
-		    typeof options[key] === 'undefined')
-			options[key] = defaults[key]
-
-	return options
+type ConfigOptions = {
+  gain: number
+  soundfont: string
 }
 
-// TODO: Return promise when no callback is given
-
-module.exports.render = function (midiBuffer, options, callback) {
-	// TODO
+const defaultOptions = {
+  gain: 2,
+  soundfont: "./node_modules/generaluser/GeneralUser.sf2",
 }
 
-module.exports.renderSync = function (midiBuffer, options) {
-	// TODO
-	return
+export async function render(
+  midiBuffer: Buffer,
+  options: ConfigOptions = defaultOptions
+) {
+  const optionsNorm = Object.assign({}, defaultOptions, options)
+  console.info("Specified options: ", optionsNorm)
+
+  throw new Error("This function is not implemented yet")
 }
 
+export async function renderFile(
+  filePath: string,
+  options: ConfigOptions = defaultOptions
+): Promise<Buffer> {
+  const optionsNorm = Object.assign({}, defaultOptions, options)
+  const tempFile = temp.path()
+  const synthRes = await execFileAsync(
+    "fluidsynth",
+    [
+      ["--fast-render", tempFile],
+      ["--gain", String(optionsNorm.gain)],
+      [path.resolve(__dirname, optionsNorm.soundfont)],
+      [filePath],
+    ].flat()
+  )
 
-module.exports.renderFile = function (filePath, options, callback) {
-
-	var defaults = {
-			gain: 2,
-			soundfont: './node_modules/generaluser/GeneralUser.sf2'
-		},
-		shellCommand,
-		tempFile,
-		key
-
-
-	options = applyDefaults(options, defaults)
-
-	tempFile = temp.path()
-
-	shellCommand = [
-		'fluidsynth',
-		'-F ' + tempFile,
-		'--gain ' + options.gain,
-		path.resolve(__dirname, options.soundfont),
-		filePath
-	]
-
-
-	childProcess.exec(
-		shellCommand.join(' '),
-		function (error, stdout, stderr) {
-
-			if (error) {
-				callback(error)
-				return
-			}
-
-			fs.readFile(tempFile, {}, function (error, data) {
-
-				if (error) {
-					callback(error)
-					return
-				}
-				else
-					callback(null, data)
-
-				fs.unlink(tempFile, function (error) {
-					if (error && error.code !== 'ENOENT')
-						throw error
-				})
-			})
-		}
-	)
-}
-
-module.exports.renderFileSync = function (filePath, options) {
-	// TODO
-	return
+  if (synthRes.stderr) {
+    throw new Error(synthRes.stderr)
+  } //
+  else {
+    const fileContent = await fs.readFile(tempFile, {})
+    await fs.unlink(tempFile)
+    return fileContent
+  }
 }

@@ -3,6 +3,10 @@
   "version": "0.2.0",
   "description": "Node.js bindings for the FluidSynth software synthesizer",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/adius/fluidnode.git"
@@ -16,11 +20,17 @@
     "url": "https://github.com/adius/fluidnode/issues"
   },
   "homepage": "https://github.com/adius/fluidnode",
+  "scripts": {
+    "prepublishOnly": "tsc",
+    "test": "bun run ./tests/main.ts"
+  },
   "dependencies": {
     "generaluser": "^1.45.0",
-    "temp": "^0.8.1"
+    "temp": "^0.9.4"
   },
   "devDependencies": {
-    "ts-migrate": "^0.1.35"
+    "@types/node": "^20.11.19",
+    "@types/temp": "^0.9.4",
+    "typescript": "^5.3.3"
   }
 }

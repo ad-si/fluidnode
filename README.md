@@ -1,44 +1,34 @@
 # FluidNode
 
-FluidNode is a node.js wrapper for the [FluidSynth](http://fluidsynth.org) software synthesizer.
+FluidNode is a Node.js wrapper for the
+[FluidSynth](http://fluidsynth.org) software synthesizer.
 
 
 ## Installation
 
-```
+```sh
 npm install fluidnode
 ```
 
+
 ## Usage
 
-Require FluidNode in your javascript files like this:
+Require FluidNode in your files like this:
 
+```ts
+import { renderFile } from "fluidnode"
+
+const wavBuffer = await renderFile(
+  filePath, // Path to MIDI file to get rendered
+  options,  // Set gain and alternative soundfont path (both optional)
+)
 ```
-var fluidnode = require('fluidnode')
-```
 
-## Interface
+Default soundfont is [GeneralUser](https://github.com/adius/GeneralUser).
 
-```
-fluidnode.renderFile(filePath, options, callback)
-```
-
-### filePath
-
-Path to MIDI file to get rendered.
+Check out the [test/main.ts] file for a complete example.
 
 
-### options
+## Development
 
-Options object to configure the rendering.
-
-
-#### Available properties
-
-`soundfont`: Path to an alternative soundfont to use instead of the default [GeneralUser](https://github.com/adius/GeneralUser) soundfont.
-
-
-### callback
-
-Function to be called after the rendering. Expects the two arguments `error` and `output`.
-`output` is a buffer containing the rendered wave file which can then for example be saved to a file.
+Check out the makefile for available commands.
