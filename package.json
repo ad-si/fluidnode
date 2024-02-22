@@ -19,5 +19,8 @@
   "dependencies": {
     "generaluser": "^1.45.0",
     "temp": "^0.8.1"
+  },
+  "devDependencies": {
+    "ts-migrate": "^0.1.35"
   }
 }
