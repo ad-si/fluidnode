@@ -1,6 +1,6 @@
 {
   "name": "fluidnode",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Node.js bindings for the FluidSynth software synthesizer",
   "main": "index.js",
   "files": [
