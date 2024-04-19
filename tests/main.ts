@@ -1,4 +1,4 @@
-import fs from "node:fs"
+import fs from "node:fs/promises"
 import path from "node:path"
 
 function makeAbs(fileName: string) {
@@ -10,8 +10,10 @@ import { renderFile } from "../index.ts"
 
 async function main() {
   const wavBuffer = await renderFile(makeAbs("./drum_sample.mid"))
+  const outPath = makeAbs("drum_sample.wav")
 
-  fs.writeFileSync(makeAbs("drum_sample.wav"), wavBuffer)
+  await fs.writeFile(outPath, wavBuffer)
+  console.log(`✅ Created ${outPath}`)
 }
 
 main()

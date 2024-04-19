@@ -1,7 +1,7 @@
 {
   "name": "fluidnode",
   "version": "0.3.0",
-  "description": "Node.js bindings for the FluidSynth software synthesizer",
+  "description": "Wrapper for the FluidSynth software synthesizer",
   "main": "index.js",
   "files": [
     "index.js"
@@ -12,7 +12,11 @@
     "url": "git+https://github.com/adius/fluidnode.git"
   },
   "keywords": [
-    "fluidsynth"
+    "fluidsynth",
+    "music",
+    "midi",
+    "soundfont",
+    "synthesizer"
   ],
   "author": "Adrian Sieber <mail@adriansieber.com>",
   "license": "MIT",
