@@ -33,7 +33,7 @@ export async function renderFile(
   options: ConfigOptions = defaultOptions
 ): Promise<Buffer> {
   const optionsNorm = Object.assign({}, defaultOptions, options)
-  const tempFile = temp.path()
+  const tempFile = temp.path({ suffix: ".wav" })
   const synthRes = await execFileAsync(
     "fluidsynth",
     [
