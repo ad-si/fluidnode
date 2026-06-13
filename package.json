@@ -29,12 +29,12 @@
     "test": "bun run ./tests/main.ts"
   },
   "dependencies": {
-    "generaluser": "^1.45.0",
+    "generaluser": "^1.47.1",
     "temp": "^0.9.4"
   },
   "devDependencies": {
-    "@types/node": "^20.11.19",
+    "@types/node": "^25.9.3",
     "@types/temp": "^0.9.4",
-    "typescript": "^5.3.3"
+    "typescript": "^6.0.3"
   }
 }
