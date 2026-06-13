@@ -31,7 +31,7 @@ const wavBuffer = await renderFile(
 await fs.writeFile("out.wav", wavBuffer, { encoding: "binary" })
 ```
 
-Default soundfont is [GeneralUser](https://github.com/adius/GeneralUser).
+Default soundfont is [GeneralUser](https://github.com/ad-si/GeneralUser).
 
 Check out the [test/main.ts] file for a complete example.
 

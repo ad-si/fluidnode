@@ -9,7 +9,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adius/fluidnode.git"
+    "url": "git+https://github.com/ad-si/fluidnode.git"
   },
   "keywords": [
     "fluidsynth",
@@ -21,9 +21,9 @@
   "author": "Adrian Sieber <mail@adriansieber.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/adius/fluidnode/issues"
+    "url": "https://github.com/ad-si/fluidnode/issues"
   },
-  "homepage": "https://github.com/adius/fluidnode",
+  "homepage": "https://github.com/ad-si/fluidnode",
   "scripts": {
     "prepublishOnly": "tsc",
     "test": "bun run ./tests/main.ts"
